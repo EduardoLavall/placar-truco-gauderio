@@ -1,29 +1,9 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#20130c">
-<title>Placar do Galpão — Truco Gaudério</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div class="embers" aria-hidden="true"></div>
-<main class="wrap">
-<header>
-  <div class="brand"><span class="brand-mark">♠</span><div><small>TRUCO GAUDÉRIO</small><h1>PLACAR DO GALPÃO</h1></div><span class="brand-mark">♥</span></div>
-  <p class="tag">No grito, na manilha e sem choro. Primeiro a 30 leva a peleia.</p>
-</header>
-<section class="board">
-  <article class="team" data-team="0"><input class="team-name" maxlength="18" value="Dupla 1" aria-label="Nome da dupla 1"><div class="phase">RUINS</div><div class="score">0</div><div class="ticks" aria-label="Progresso"></div><div class="controls"><button class="minus" data-delta="-1">−</button><button class="plus" data-delta="1">+1 PONTO</button></div><div class="quick"><button data-delta="2">+2 <small>TRUCO</small></button><button data-delta="3">+3 <small>RETRUCO</small></button><button data-delta="4">+4 <small>VALE 4</small></button></div></article>
-  <div class="versus"><span>✦</span><b>VS</b><span>✦</span></div>
-  <article class="team" data-team="1"><input class="team-name" maxlength="18" value="Dupla 2" aria-label="Nome da dupla 2"><div class="phase">RUINS</div><div class="score">0</div><div class="ticks" aria-label="Progresso"></div><div class="controls"><button class="minus" data-delta="-1">−</button><button class="plus" data-delta="1">+1 PONTO</button></div><div class="quick"><button data-delta="2">+2 <small>TRUCO</small></button><button data-delta="3">+3 <small>RETRUCO</small></button><button data-delta="4">+4 <small>VALE 4</small></button></div></article>
-</section>
-<section class="bar"><button id="undo">↶ DESFAZER</button><button id="cards">🂡 ORDEM DAS CARTAS</button><button id="custom">✦ MARCAR PONTOS</button><button id="reset">NOVA PELEIA ↻</button></section>
-<section class="history"><h2>ÚLTIMOS TENTOS</h2><div id="history"><p class="empty">A cancha tá limpa. Começa a peleia!</p></div></section>
-<footer>FEITO NO SUL • ATÉ 30 TENTOS • v1.1.0</footer>
-</main>
-<dialog id="winner"><div class="modal"><div class="stars">✦ ✦ ✦</div><small>PELEIA ENCERRADA</small><h2 id="winnerName"></h2><p>chegou aos 30 e levou a peleia!</p><button id="again">OUTRA PELEIA</button></div></dialog>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#20130c"><title>Placar do Galpão — Truco Gaudério</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="embers" aria-hidden="true"></div><div id="fx" aria-hidden="true"></div>
+<main class="wrap"><header><div class="brand"><span class="brand-mark">♠</span><div><small>TRUCO GAUDÉRIO</small><h1>PLACAR DO GALPÃO</h1></div><span class="brand-mark">♥</span></div><p class="tag">No grito, na manilha e sem choro. Primeiro a 30 leva a peleia.</p></header>
+<section class="board"><article class="team" data-team="0"><input class="team-name" maxlength="18" value="Dupla 1" aria-label="Nome da dupla 1"><div class="phase">RUINS</div><div class="score">0</div><div class="ticks" aria-label="Progresso"></div><div class="controls"><button class="minus" data-delta="-1">−</button><button class="plus" data-delta="1">+1 PONTO</button></div><div class="quick"><button data-delta="2">+2 <small>TRUCO</small></button><button data-delta="3">+3 <small>RETRUCO</small></button><button data-delta="4">+4 <small>VALE 4</small></button></div></article><div class="versus"><span>✦</span><b>VS</b><span>✦</span></div><article class="team" data-team="1"><input class="team-name" maxlength="18" value="Dupla 2" aria-label="Nome da dupla 2"><div class="phase">RUINS</div><div class="score">0</div><div class="ticks" aria-label="Progresso"></div><div class="controls"><button class="minus" data-delta="-1">−</button><button class="plus" data-delta="1">+1 PONTO</button></div><div class="quick"><button data-delta="2">+2 <small>TRUCO</small></button><button data-delta="3">+3 <small>RETRUCO</small></button><button data-delta="4">+4 <small>VALE 4</small></button></div></article></section>
+<section class="bar"><button id="undo">↶ DESFAZER</button><button id="cards">🂡 ORDEM DAS CARTAS</button><button id="custom">✦ MARCAR PONTOS</button><button id="reset">NOVA PELEIA ↻</button></section><section class="history"><h2>ÚLTIMOS TENTOS</h2><div id="history"><p class="empty">A cancha tá limpa. Começa a peleia!</p></div></section><footer>FEITO NO SUL • ATÉ 30 TENTOS • v1.2.0</footer></main>
+<dialog id="winner"><div class="modal winner-modal"><div class="stars">✦ ✦ ✦</div><small>PELEIA ENCERRADA</small><h2 id="winnerName"></h2><p>chegou aos 30 e levou a peleia!</p><button id="again">OUTRA PELEIA</button></div></dialog>
 <dialog id="points"><form method="dialog" class="modal"><small>MARCAR TENTOS</small><h2>Quantos pontos?</h2><div class="custom-grid" id="customGrid"></div><div class="pick-team"><button value="cancel">CANCELAR</button></div></form></dialog>
-<dialog id="cardOrder"><div class="modal cards-modal"><button class="modal-x" id="closeCards" aria-label="Fechar">×</button><small>TRUCO GAUDÉRIO</small><h2>Ordem das Cartas</h2><p class="cards-help">Da mais forte pra mais fraca</p><div class="card-rank" id="cardRank"></div><div class="rank-legend"><b>MANILHAS</b><span>As quatro primeiras mandam na cancha.</span></div><button id="closeCardsBottom">FECHAR</button></div></dialog>
-<script src="app.js"></script>
-</body></html>
+<dialog id="cardOrder"><div class="modal cards-modal"><button class="modal-x" id="closeCards" aria-label="Fechar">×</button><small>TRUCO GAUDÉRIO</small><h2>Ordem das Cartas</h2><p class="cards-help">Da mais forte pra mais fraca</p><div class="card-rank" id="cardRank"></div><div class="rank-legend"><b>MANILHAS</b><span>As quatro primeiras mandam na cancha.</span></div><button id="closeCardsBottom">FECHAR</button></div></dialog><script src="app.js"></script></body></html>
