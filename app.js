@@ -9,7 +9,12 @@ teams.forEach((el,i)=>{el.querySelectorAll("[data-delta]").forEach(b=>b.onclick=
 document.querySelector("#undo").onclick=()=>{if(!state.history.length)return;const last=state.history.pop();const m=last.match(/^(.+?) ([+-]\d+)/);if(m){const i=state.names.indexOf(m[1]);if(i>=0)state.scores[i]=Math.max(0,Math.min(30,state.scores[i]-Number(m[2])))}render()};
 function reset(){state.scores=[0,0];state.history=[];render()}document.querySelector("#reset").onclick=()=>{if(confirm("Abrir uma nova peleia e zerar o placar?"))reset()};document.querySelector("#again").onclick=()=>{document.querySelector("#winner").close();reset()};
 const pd=document.querySelector("#points"),grid=document.querySelector("#customGrid");grid.innerHTML=Array.from({length:10},(_,i)=>'<button type="button" data-p="'+(i+1)+'">+'+(i+1)+'</button>').join("");document.querySelector("#custom").onclick=()=>pd.showModal();grid.onclick=e=>{const b=e.target.closest("[data-p]");if(!b)return;const n=+b.dataset.p;pd.close();setTimeout(()=>{const who=prompt("Pra qual dupla? Digite 1 ou 2","1");if(who==="1"||who==="2")add(+who-1,n,"TENTOS")},50)};
-const order=[["1","4","♣",0],["2","7","♥",1],["3","A","♠",0],["4","7","♦",1],["5","3","♠",0],["6","2","♠",0],["7","A","♣",0],["8","A","♥",1],["9","A","♦",1],["10","K","♠",0],["11","J","♠",0],["12","Q","♠",0],["13","7","♣",0],["14","6","♠",0],["15","5","♠",0],["16","4","♠",0]];
-document.querySelector("#cardRank").innerHTML=order.map(([p,v,s,r],i)=>'<div class="playing-card '+(i<4?'manilha ':'')+(r?'red':'')+'"><span class="pos">#'+p+'</span><b>'+v+'</b><em>'+s+'</em></div>').join("");
+const order=[
+["1","1","ESPADAS","⚔",0],["2","1","BASTOS","♣",0],["3","7","ESPADAS","⚔",0],["4","7","OUROS","●",1],
+["5","3","TODOS","",0],["6","2","TODOS","",0],["7","1","COPAS / OUROS","♥ ●",1],
+["8","12","REIS","♛",0],["9","11","CAVALOS","♞",0],["10","10","SOTAS","♟",0],
+["11","7","BASTOS / COPAS","♣ ♥",0],["12","6","TODOS","",0],["13","5","TODOS","",0],["14","4","TODOS","",0]
+];
+document.querySelector("#cardRank").innerHTML=order.map(([p,v,n,s,r],i)=>'<div class="playing-card '+(i<4?'manilha ':'')+(r?'red':'')+'"><span class="pos">#'+p+'</span><b>'+v+'</b><em>'+s+'</em><small>'+n+'</small></div>').join("");
 const cd=document.querySelector("#cardOrder");document.querySelector("#cards").onclick=()=>cd.showModal();document.querySelector("#closeCards").onclick=()=>cd.close();document.querySelector("#closeCardsBottom").onclick=()=>cd.close();
 render();
