@@ -1,0 +1,37 @@
+const KEY="placar-truco-gauderio-v1";
+let state={scores:[0,0],names:["Dupla 1","Dupla 2"],history:[]};
+try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved)state={...state,...saved}}catch{}
+const teams=[...document.querySelectorAll(".team")], hist=document.querySelector("#history");
+const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+function render(){
+ teams.forEach((el,i)=>{
+  el.querySelector(".score").textContent=state.scores[i];
+  el.querySelector(".team-name").value=state.names[i];
+  const phase=el.querySelector(".phase"); phase.textContent=state.scores[i]>=15?"BOAS":"RUINS";phase.classList.toggle("boas",state.scores[i]>=15);
+  const ticks=el.querySelector(".ticks");ticks.innerHTML=Array.from({length:30},(_,n)=>'<i class="tick '+(n<state.scores[i]?'on':'')+'"></i>').join("");
+ });
+ hist.innerHTML=state.history.length?state.history.slice(-8).reverse().map(x=>'<span class="event">'+x+'</span>').join(""):'<p class="empty">A cancha tá limpa. Começa a peleia!</p>';
+ save();
+}
+function add(i,delta,label){
+ const before=state.scores[i], after=Math.max(0,Math.min(30,before+delta)); if(after===before)return;
+ state.scores[i]=after;state.history.push(state.names[i]+" "+(after>before?"+":"")+(after-before)+(label?" · "+label:""));
+ render();
+ if(after===30){document.querySelector("#winnerName").textContent=state.names[i];document.querySelector("#winner").showModal()}
+}
+teams.forEach((el,i)=>{
+ el.querySelectorAll("[data-delta]").forEach(b=>b.onclick=()=>add(i,+b.dataset.delta,b.querySelector("small")?.textContent||""));
+ el.querySelector(".team-name").onchange=e=>{state.names[i]=e.target.value.trim()||("Dupla "+(i+1));render()}
+});
+document.querySelector("#undo").onclick=()=>{
+ if(!state.history.length)return;
+ const last=state.history.pop();const m=last.match(/^(.+?) ([+-]\d+)/);if(m){const i=state.names.indexOf(m[1]);if(i>=0)state.scores[i]=Math.max(0,Math.min(30,state.scores[i]-Number(m[2])))}render()
+};
+function reset(){state.scores=[0,0];state.history=[];render()}
+document.querySelector("#reset").onclick=()=>{if(confirm("Abrir uma nova peleia e zerar o placar?"))reset()};
+document.querySelector("#again").onclick=()=>{document.querySelector("#winner").close();reset()};
+const pd=document.querySelector("#points"), grid=document.querySelector("#customGrid");
+grid.innerHTML=Array.from({length:10},(_,i)=>'<button type="button" data-p="'+(i+1)+'">+'+(i+1)+'</button>').join("");
+document.querySelector("#custom").onclick=()=>pd.showModal();
+grid.onclick=e=>{const b=e.target.closest("[data-p]");if(!b)return;const n=+b.dataset.p;pd.close();setTimeout(()=>{const who=prompt("Pra qual dupla? Digite 1 ou 2","1");if(who==="1"||who==="2")add(+who-1,n,"TENTOS")},50)};
+render();
