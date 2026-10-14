@@ -13,24 +13,48 @@ $("#soundToggle").onclick=async()=>{soundOn=!soundOn;$("#soundToggle").textConte
 const pd=$("#points"),grid=$("#customGrid");grid.innerHTML=Array.from({length:10},(_,i)=>'<button type="button" data-p="'+(i+1)+'">+'+(i+1)+'</button>').join("");$("#custom").onclick=()=>pd.showModal();grid.onclick=e=>{let b=e.target.closest("[data-p]");if(!b)return;pendingPoints=+b.dataset.p;$("#pointTeams").innerHTML=state.teams.map((t,i)=>'<button type="button" data-pt="'+i+'">'+t.symbol+" "+t.name+'</button>').join("")};$("#pointTeams").onclick=e=>{let b=e.target.closest("[data-pt]");if(b){pd.close();add(+b.dataset.pt,pendingPoints,"TENTOS")}};
 function renderMatchHistory(){let all=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");$("#matchHistory").innerHTML=all.length?all.map(m=>'<div class="match-card"><b>'+m.teams[m.winner].symbol+" "+m.teams[m.winner].name+' venceu</b><br>'+m.teams[0].name+" "+m.scores[0]+" × "+m.scores[1]+" "+m.teams[1].name+'<br><small>'+new Date(m.endedAt).toLocaleString("pt-BR")+'</small></div>').join(""):'<p class="empty">Nenhuma peleia encerrada ainda.</p>'}
 const order=[
-["1","1","ESPADAS","espadas"],["2","1","BASTOS","bastos"],["3","7","ESPADAS","espadas"],["4","7","OUROS","ouros"],
-["5","3","TODOS","todos"],["6","2","TODOS","todos"],["7","1","COPAS / OUROS","copas-ouros"],
-["8","12","REIS","figura-rei"],["9","11","CAVALOS","figura-cavalo"],["10","10","SOTAS","figura-sota"],
-["11","7","BASTOS / COPAS","bastos-copas"],["12","6","TODOS","todos"],["13","5","TODOS","todos"],["14","4","TODOS","todos"]
+  {value:1,suits:["espadas"],title:"Ás de Espadas",note:"MACHO · A MAIS FORTE"},
+  {value:1,suits:["bastos"],title:"Ás de Bastos",note:"HEMBRA · SEGUNDA MAIS FORTE"},
+  {value:7,suits:["espadas"],title:"Sete de Espadas",note:"SETE BRAVO"},
+  {value:7,suits:["ouros"],title:"Sete de Ouros",note:"QUARTA MAIS FORTE"},
+  {value:3,suits:["espadas","bastos","ouros","copas"],title:"Todos os Três",note:"EMPATE ENTRE OS QUATRO NAIPES"},
+  {value:2,suits:["espadas","bastos","ouros","copas"],title:"Todos os Dois",note:"EMPATE ENTRE OS QUATRO NAIPES"},
+  {value:1,suits:["copas","ouros"],title:"Áses de Copas e Ouros",note:"ANCHOS FALSOS · MESMA FORÇA"},
+  {value:12,suits:["espadas","bastos","ouros","copas"],title:"Todos os Reis",note:"FIGURAS · MESMA FORÇA"},
+  {value:11,suits:["espadas","bastos","ouros","copas"],title:"Todos os Cavalos",note:"FIGURAS · MESMA FORÇA"},
+  {value:10,suits:["espadas","bastos","ouros","copas"],title:"Todas as Sotas",note:"FIGURAS · MESMA FORÇA"},
+  {value:7,suits:["bastos","copas"],title:"Setes de Bastos e Copas",note:"MESMA FORÇA"},
+  {value:6,suits:["espadas","bastos","ouros","copas"],title:"Todos os Seis",note:"EMPATE ENTRE OS QUATRO NAIPES"},
+  {value:5,suits:["espadas","bastos","ouros","copas"],title:"Todos os Cinco",note:"EMPATE ENTRE OS QUATRO NAIPES"},
+  {value:4,suits:["espadas","bastos","ouros","copas"],title:"Todos os Quatro",note:"CARTAS MAIS FRACAS · MESMA FORÇA"}
 ];
-function suitArt(suit){
-const icons={
-espadas:'<path d="M24 4 28 13 26 33 22 33 20 13Z" fill="#c6ced2" stroke="#3b4a53" stroke-width="1.8"/><path d="M14 32H34M24 33V43" stroke="#a27a35" stroke-width="4" stroke-linecap="round"/><path d="M20 44H28" stroke="#604020" stroke-width="4" stroke-linecap="round"/>',
-bastos:'<path d="M17 43Q21 24 28 6Q36 7 32 16Q28 25 24 44Z" fill="#94703b" stroke="#4b572e" stroke-width="2"/><path d="M22 28 31 24M25 20 34 15M20 35 28 32" stroke="#d3b76d" stroke-width="2"/>',
-ouros:'<circle cx="24" cy="24" r="16" fill="#d4a12c" stroke="#8a531d" stroke-width="3"/><circle cx="24" cy="24" r="11" fill="none" stroke="#ffe2a0" stroke-width="2"/><path d="M24 14 27 21 35 24 27 27 24 35 21 27 13 24 21 21Z" fill="#a84c2a"/>',
-copas:'<path d="M11 9H37L34 24Q31 31 26 32V39H34V43H14V39H22V32Q16 29 14 24Z" fill="#b44d31" stroke="#80321e" stroke-width="2"/><path d="M15 13H33L31 23Q24 28 17 23Z" fill="#e6ad54"/><path d="M11 12H6Q6 24 15 24M37 12H42Q42 24 33 24" fill="none" stroke="#ad7533" stroke-width="3"/>'
+const suitPaths={
+  espadas:'<path d="M24 3 29 13 27 35 21 35 19 13Z" fill="#b6c3cb" stroke="#496276" stroke-width="1.8"/><path d="M24 5V33" stroke="#fff8dc" stroke-width="1.5"/><path d="M12 35Q24 41 36 35M24 37V46" fill="none" stroke="#a47832" stroke-width="4" stroke-linecap="round"/><path d="M20 46H28" stroke="#785026" stroke-width="3" stroke-linecap="round"/>',
+  bastos:'<path d="M18 46Q19 27 28 5Q35 3 36 11Q34 16 31 17L25 46Z" fill="#886038" stroke="#4c4b29" stroke-width="2"/><path d="M20 36 28 33M22 28 31 24M25 19 34 16" stroke="#cfac6b" stroke-width="2"/><path d="M28 10Q20 7 21 14" fill="none" stroke="#607343" stroke-width="2"/>',
+  ouros:'<circle cx="24" cy="24" r="18" fill="#d9a33b" stroke="#915a26" stroke-width="2.5"/><circle cx="24" cy="24" r="13" fill="none" stroke="#f9e5a6" stroke-width="2"/><path d="m24 12 4 8 8 4-8 4-4 8-4-8-8-4 8-4Z" fill="#b24b30" stroke="#f7c568" stroke-width="1"/>',
+  copas:'<path d="M12 10H36L33 25Q31 31 26 33V40H34V45H14V40H22V33Q16 30 15 25Z" fill="#b84731" stroke="#733c29" stroke-width="2"/><path d="M16 13H32L30 23Q24 28 18 23Z" fill="#e7b65f"/><path d="M12 13H7Q7 24 16 25M36 13H41Q41 24 33 25" stroke="#a8743b" stroke-width="3" fill="none"/>'
 };
-if(suit==="todos")return ["espadas","bastos","ouros","copas"].map(x=>suitArt(x)).join("");
-if(suit.includes("-")&&!suit.startsWith("figura"))return suit.split("-").map(x=>suitArt(x)).join("");
-if(suit.startsWith("figura")){const sign=suit==="figura-rei"?"♛":suit==="figura-cavalo"?"♞":"♟";return '<span class="spanish-figure">'+sign+'</span>';}
-return '<svg class="spanish-suit" viewBox="0 0 48 48" aria-hidden="true">'+icons[suit]+'</svg>';
+const suitNames={espadas:"Espadas",bastos:"Bastos",ouros:"Ouros",copas:"Copas"};
+function spanishSuit(suit){
+  return '<svg class="spanish-suit-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">'+suitPaths[suit]+'</svg>';
 }
-$("#cardRank").innerHTML=order.map(([position,value,name,suit],i)=>'<div class="rank-row"><span class="rank-position">'+position+'º</span><div class="playing-card '+(i<4?'manilha ':'')+'suit-'+suit+'"><span class="spanish-corner">'+value+'</span><div class="spanish-art">'+suitArt(suit)+'</div><span class="spanish-corner spanish-corner-bottom">'+value+'</span></div><div class="rank-description"><strong>'+name+'</strong><span>'+(i<4?'CARTA BRAVA':'VALOR '+value)+'</span></div></div>').join("");
+function courtArt(value,suit){
+  const mantle=suit==="espadas"||suit==="copas"?"#b24b35":"#47754f";
+  let person="";
+  if(value===12)person='<path d="M9 56Q14 37 32 38Q50 37 55 56Z" fill="'+mantle+'" stroke="#653c28" stroke-width="2"/><path d="M23 40 32 50 41 40" fill="#f3cb83"/><path d="M24 21Q24 12 32 12Q40 12 40 21V31Q38 39 32 39Q26 39 24 31Z" fill="#f2c38b" stroke="#784c38" stroke-width="1.5"/><path d="M22 18 18 5 26 10 32 2 38 10 46 5 42 18Z" fill="#d6a52b" stroke="#805123" stroke-width="2"/><circle cx="26" cy="13" r="2" fill="#b84a33"/><circle cx="38" cy="13" r="2" fill="#b84a33"/><path d="M26 29Q32 35 38 29" stroke="#744432" stroke-width="2" fill="none"/><path d="M28 34Q32 41 36 34" fill="#7c4b31"/>';
+  else if(value===11)person='<path d="M10 58Q12 43 24 42L34 46 50 45 56 57Z" fill="'+mantle+'" stroke="#70462b" stroke-width="2"/><path d="M18 42 16 30 25 18 37 15 44 23 42 33 35 37 33 45Z" fill="#bd8854" stroke="#6c4a34" stroke-width="2"/><path d="M24 22 25 12 34 17 38 11 42 23" fill="#946641"/><circle cx="35" cy="25" r="2" fill="#2c221c"/><path d="M41 31Q47 34 51 30" fill="none" stroke="#69452c" stroke-width="2"/><path d="M14 20Q23 9 33 8L40 13 33 17 18 25Z" fill="#d29c34" stroke="#7c4e27" stroke-width="1.5"/>';
+  else person='<path d="M9 56Q12 40 32 39Q52 40 55 56Z" fill="'+mantle+'" stroke="#653c28" stroke-width="2"/><path d="M25 39 32 46 39 39" fill="#efc685"/><path d="M25 18Q25 12 32 12Q39 12 39 18V30Q37 38 32 38Q27 38 25 30Z" fill="#f2c38b" stroke="#784c38" stroke-width="1.5"/><path d="M17 18 22 8 41 8 47 18 37 15 26 15Z" fill="#b65438" stroke="#78452b" stroke-width="2"/><path d="M28 29Q32 32 36 29" fill="none" stroke="#9d6344" stroke-width="1.5"/>';
+  return '<span class="spanish-court"><svg class="spanish-court-figure" viewBox="0 0 64 62" aria-hidden="true" focusable="false">'+person+'</svg><span class="spanish-court-suit">'+spanishSuit(suit)+'</span></span>';
+}
+function renderSpanishCard(value,suit,powerful){
+  const suitName=suitNames[suit],name=value===12?"Rei":value===11?"Cavalo":value===10?"Sota":String(value);
+  const face=value>=10;
+  const drawing=face?courtArt(value,suit):'<span class="spanish-pips" data-count="'+value+'">'+Array.from({length:value},()=>spanishSuit(suit)).join("")+'</span>';
+  return '<div class="spanish-card suit-'+suit+(powerful?' spanish-card-power':'')+'" role="img" aria-label="'+name+' de '+suitName+'"><span class="spanish-card-corner">'+value+'</span><span class="spanish-card-body">'+drawing+'</span><span class="spanish-card-corner spanish-card-corner-bottom">'+value+'</span></div>';
+}
+$("#cardRank").innerHTML=order.map((entry,index)=>
+  '<section class="rank-row'+(index<4?' rank-row-brava':'')+'"><span class="rank-position">'+(index+1)+'º</span><div class="rank-main"><div class="rank-description"><strong>'+entry.title+'</strong><span>'+entry.note+'</span></div><div class="rank-cards">'+entry.suits.map(suit=>renderSpanishCard(entry.value,suit,index<4)).join("")+'</div></div></section>'
+).join("");
 const cd=$("#cardOrder");function openCardOrder(){cd.showModal()}$("#cards").onclick=openCardOrder;$("#homeCards").onclick=openCardOrder;$("#closeCards").onclick=$("#closeCardsBottom").onclick=()=>cd.close();
 
 try{let old=JSON.parse(localStorage.getItem(GAME_KEY));if(old?.teams){state=old;renderGame()}}catch{}show("home");

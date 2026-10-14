@@ -12,6 +12,7 @@ Placar mobile-first para partidas de **Truco Gaudério até 30 tentos**.
 - Persistência local no navegador
 - Visual gaúcho inspirado em galpão, madeira, brasa e churrasco
 - Responsivo para celular e desktop
+- **Ordem das cartas (v2.2.1):** acesso pelo menu inicial e pela partida; ranking vertical de 14 faixas de força com as 40 cartas do baralho espanhol, naipes ilustrados, pips dos valores 1–7 e figuras simplificadas de sota, cavalo e rei.
 - **Tirar no Rei (4 ou 6 jogadores):** sorteio animado dos times usando o baralho espanhol de 40 cartas, com quatro reis e opção de repetir ou pular a animação
 
 App estático: HTML + CSS + JavaScript, sem backend.
@@ -30,4 +31,4 @@ O placar usa a modalidade de 30 tentos e os valores de mão do Truco Gaudério/A
 - Funciona exclusivamente no navegador, sem APIs externas nem armazenamento adicional.
 
 ## Deploy
-Preparado para deploy estático na Vercel.
+Deploy estático por GitHub Pages (workflow `.github/workflows/pages.yml`) e compatível também com a Vercel.
