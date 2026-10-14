@@ -12,5 +12,25 @@ $("#undo").onclick=()=>{if(!state?.events.length)return;let e=state.events.pop()
 $("#soundToggle").onclick=async()=>{soundOn=!soundOn;$("#soundToggle").textContent=soundOn?"🔊 SOM":"🔇 MUDO";if(soundOn){audioCtx??=new(window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();sound("open")}};
 const pd=$("#points"),grid=$("#customGrid");grid.innerHTML=Array.from({length:10},(_,i)=>'<button type="button" data-p="'+(i+1)+'">+'+(i+1)+'</button>').join("");$("#custom").onclick=()=>pd.showModal();grid.onclick=e=>{let b=e.target.closest("[data-p]");if(!b)return;pendingPoints=+b.dataset.p;$("#pointTeams").innerHTML=state.teams.map((t,i)=>'<button type="button" data-pt="'+i+'">'+t.symbol+" "+t.name+'</button>').join("")};$("#pointTeams").onclick=e=>{let b=e.target.closest("[data-pt]");if(b){pd.close();add(+b.dataset.pt,pendingPoints,"TENTOS")}};
 function renderMatchHistory(){let all=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");$("#matchHistory").innerHTML=all.length?all.map(m=>'<div class="match-card"><b>'+m.teams[m.winner].symbol+" "+m.teams[m.winner].name+' venceu</b><br>'+m.teams[0].name+" "+m.scores[0]+" × "+m.scores[1]+" "+m.teams[1].name+'<br><small>'+new Date(m.endedAt).toLocaleString("pt-BR")+'</small></div>').join(""):'<p class="empty">Nenhuma peleia encerrada ainda.</p>'}
-const order=[["1","1","ESPADAS","⚔",0],["2","1","BASTOS","♣",0],["3","7","ESPADAS","⚔",0],["4","7","OUROS","●",1],["5","3","TODOS","",0],["6","2","TODOS","",0],["7","1","COPAS / OUROS","♥ ●",1],["8","12","REIS","♛",0],["9","11","CAVALOS","♞",0],["10","10","SOTAS","♟",0],["11","7","BASTOS / COPAS","♣ ♥",0],["12","6","TODOS","",0],["13","5","TODOS","",0],["14","4","TODOS","",0]];$("#cardRank").innerHTML=order.map(([p,v,n,s,r],i)=>'<div class="playing-card '+(i<4?'manilha ':'')+(r?'red':'')+'"><small>#'+p+'</small><b>'+v+'</b><span>'+s+'</span><small>'+n+'</small></div>').join("");const cd=$("#cardOrder");$("#cards").onclick=()=>cd.showModal();$("#closeCards").onclick=$("#closeCardsBottom").onclick=()=>cd.close();
+const order=[
+["1","1","ESPADAS","espadas"],["2","1","BASTOS","bastos"],["3","7","ESPADAS","espadas"],["4","7","OUROS","ouros"],
+["5","3","TODOS","todos"],["6","2","TODOS","todos"],["7","1","COPAS / OUROS","copas-ouros"],
+["8","12","REIS","figura-rei"],["9","11","CAVALOS","figura-cavalo"],["10","10","SOTAS","figura-sota"],
+["11","7","BASTOS / COPAS","bastos-copas"],["12","6","TODOS","todos"],["13","5","TODOS","todos"],["14","4","TODOS","todos"]
+];
+function suitArt(suit){
+const icons={
+espadas:'<path d="M24 4 28 13 26 33 22 33 20 13Z" fill="#c6ced2" stroke="#3b4a53" stroke-width="1.8"/><path d="M14 32H34M24 33V43" stroke="#a27a35" stroke-width="4" stroke-linecap="round"/><path d="M20 44H28" stroke="#604020" stroke-width="4" stroke-linecap="round"/>',
+bastos:'<path d="M17 43Q21 24 28 6Q36 7 32 16Q28 25 24 44Z" fill="#94703b" stroke="#4b572e" stroke-width="2"/><path d="M22 28 31 24M25 20 34 15M20 35 28 32" stroke="#d3b76d" stroke-width="2"/>',
+ouros:'<circle cx="24" cy="24" r="16" fill="#d4a12c" stroke="#8a531d" stroke-width="3"/><circle cx="24" cy="24" r="11" fill="none" stroke="#ffe2a0" stroke-width="2"/><path d="M24 14 27 21 35 24 27 27 24 35 21 27 13 24 21 21Z" fill="#a84c2a"/>',
+copas:'<path d="M11 9H37L34 24Q31 31 26 32V39H34V43H14V39H22V32Q16 29 14 24Z" fill="#b44d31" stroke="#80321e" stroke-width="2"/><path d="M15 13H33L31 23Q24 28 17 23Z" fill="#e6ad54"/><path d="M11 12H6Q6 24 15 24M37 12H42Q42 24 33 24" fill="none" stroke="#ad7533" stroke-width="3"/>'
+};
+if(suit==="todos")return ["espadas","bastos","ouros","copas"].map(x=>suitArt(x)).join("");
+if(suit.includes("-")&&!suit.startsWith("figura"))return suit.split("-").map(x=>suitArt(x)).join("");
+if(suit.startsWith("figura")){const sign=suit==="figura-rei"?"♛":suit==="figura-cavalo"?"♞":"♟";return '<span class="spanish-figure">'+sign+'</span>';}
+return '<svg class="spanish-suit" viewBox="0 0 48 48" aria-hidden="true">'+icons[suit]+'</svg>';
+}
+$("#cardRank").innerHTML=order.map(([position,value,name,suit],i)=>'<div class="rank-row"><span class="rank-position">'+position+'º</span><div class="playing-card '+(i<4?'manilha ':'')+'suit-'+suit+'"><span class="spanish-corner">'+value+'</span><div class="spanish-art">'+suitArt(suit)+'</div><span class="spanish-corner spanish-corner-bottom">'+value+'</span></div><div class="rank-description"><strong>'+name+'</strong><span>'+(i<4?'CARTA BRAVA':'VALOR '+value)+'</span></div></div>').join("");
+const cd=$("#cardOrder");function openCardOrder(){cd.showModal()}$("#cards").onclick=openCardOrder;$("#homeCards").onclick=openCardOrder;$("#closeCards").onclick=$("#closeCardsBottom").onclick=()=>cd.close();
+
 try{let old=JSON.parse(localStorage.getItem(GAME_KEY));if(old?.teams){state=old;renderGame()}}catch{}show("home");
