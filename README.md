@@ -19,12 +19,13 @@ App estático: HTML + CSS + JavaScript, sem backend.
 ## Regras consideradas
 O placar usa a modalidade de 30 tentos e os valores de mão do Truco Gaudério/Argentino: Truco vale 2, Retruco 3 e Vale 4 vale 4. Envido/Flor podem variar conforme canto e situação, então há marcação manual de tentos.
 
-## Sorteio de equipes — Tirar no Rei (v2.1.0)
+## Sorteio de equipes — Tirar no Rei (v2.1.1)
 - Usa **40 cartas**: quatro naipes (Espadas, Bastos, Ouros e Copas), com valores 1–7 e 10–12. Cada naipe contém um **rei (12)**.
 - As cartas e a ordem de distribuição dos jogadores são embaralhadas por **Fisher–Yates** usando `crypto.getRandomValues()` e amostragem por rejeição, sem viés de módulo.
-- A distribuição é **sem reposição**. Quem recebe um rei sai da distribuição para que os quatro reis fiquem com quatro pessoas diferentes.
-- Os **dois primeiros reis** formam o Time 1; os **dois reis seguintes**, o Time 2.
-- Com seis pessoas, os **dois jogadores restantes** são sorteados e entram um em cada equipe, ficando 3×3.
+- A distribuição é **sem reposição**. Quem recebe um rei sai da distribuição e não recebe mais cartas nesta rodada.
+- **4 jogadores:** o sorteio acaba assim que **duas pessoas diferentes** tirarem rei. Essas duas formam o Time 1, contra as duas que não tiraram rei (Time 2).
+- **6 jogadores:** o sorteio acaba assim que **três pessoas diferentes** tirarem rei. Essas três formam o Time 1, contra as três que não tiraram rei (Time 2).
+- A rodada termina imediatamente na carta que revela o último rei necessário, sem distribuir o restante do baralho.
 - O resultado é calculado antes da animação: pular ou reduzir movimento não muda o sorteio. Os nomes no formulário só são reorganizados após **confirmar**; cancelar não altera nada.
 - Funciona exclusivamente no navegador, sem APIs externas nem armazenamento adicional.
 
