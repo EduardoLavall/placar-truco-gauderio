@@ -1,0 +1,205 @@
+
+/* ------------------------------------------------------------------------
+   PLACAR DO GALPÃO / DIREÇÃO DE ARTE v2.4.0
+   Chão de brasa · Carvalho tostado · Couro curtido · Erva-mate
+   Componentes materiais, hierarquia editorial e interações acessíveis.
+   ------------------------------------------------------------------------ */
+:root{
+ --charcoal:#140d0a; --night:#1e120d; --wood-deep:#28170e; --wood:#50301c;
+ --wood-light:#77502c; --copper:#ad6637; --brass:#cda46a; --ember:#e57834;
+ --flame:#ffbf65; --mate:#708149; --mate-deep:#37492f;
+ --paper:#ead7b1; --paper-muted:#c9b28c; --line:#90623b;
+ --wood-grain:repeating-linear-gradient(176deg,transparent 0 9px,#140a0618 10px 11px,transparent 12px 23px,#f6d8a008 24px 25px,transparent 26px 44px);
+ --wood-surface:var(--wood-grain),linear-gradient(116deg,#654122 0%,#4d2b18 45%,#6a4124 100%);
+ --metal:radial-gradient(circle at 28% 25%,#fae3ad 0,#c5a47b 25%,#70604d 59%,#271b17 88%);
+ --ui-edge:1px solid #94653d;
+ --ui-shadow:0 6px 0 #100a07,0 13px 25px #0007;
+ --ui-focus:0 0 0 3px #ffe1a6,0 0 0 6px #26180f;
+}
+html{background:var(--charcoal);scroll-behavior:smooth}
+body{min-height:100vh;position:relative;isolation:isolate;background:
+ radial-gradient(ellipse at 50% 120%,#5d250c99 0%,transparent 42%),
+ radial-gradient(ellipse at 50% -10%,#49251399 0%,transparent 48%),
+ repeating-linear-gradient(90deg,#0f090700 0 104px,#0604035c 105px 108px,#09050400 110px 211px),
+ repeating-linear-gradient(172deg,#1f1008 0 4px,#1a0f09 5px 20px,#201109 22px 29px);
+ color:var(--paper);text-shadow:none}
+body:before{content:"";position:fixed;z-index:-1;pointer-events:none;inset:0;background:
+ radial-gradient(ellipse at 50% 94%,#ff6b1d18,transparent 48%),
+ linear-gradient(90deg,#0906047e,transparent 20%,transparent 80%,#0906047e);
+ box-shadow:inset 0 0 130px #000c}
+body:after{content:"";position:fixed;z-index:-1;inset:0;pointer-events:none;opacity:.13;background-image:repeating-linear-gradient(0deg,#fff4dc0e 0 1px,transparent 1px 4px);mix-blend-mode:screen}
+.wrap{position:relative;width:min(1090px,calc(100% - 30px));margin:0 auto;padding:30px 0 110px}
+.wrap>header{position:relative;padding:25px 0 19px;text-align:center}
+.wrap>header:before{content:"";position:absolute;top:0;left:50%;width:min(470px,90%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#b88650,transparent)}
+.brand{gap:17px;align-items:center}
+.brand h1{font:clamp(27px,4.9vw,48px)/1.16 Rye,Georgia,serif;margin:7px 0;color:#f1dab0;text-shadow:0 2px 0 #5f2f17,0 5px 11px #000b;letter-spacing:.025em}
+.brand small{color:var(--brass);letter-spacing:.38em;font-weight:900;font-size:11px}
+.brand-mark{font-size:24px;color:#c89758;filter:drop-shadow(0 2px 4px #000)}
+.tag{margin-top:12px;color:#c6a47c;font:italic 14px Georgia,serif;letter-spacing:.02em}
+.wrap>header:after{content:"✦   ✦   ✦";display:block;margin:18px auto 0;color:#9a6b3e;letter-spacing:.75em;font-size:10px}
+h1,h2,h3{overflow-wrap:break-word}
+.screen{animation:galpaoEnter .34s cubic-bezier(.2,.9,.2,1) both}
+.home-card,.setup-card{position:relative;isolation:isolate;overflow:hidden;width:min(750px,100%);margin:23px auto;padding:36px clamp(18px,5vw,47px) 39px;border:7px solid #59361d;border-radius:9px;background:var(--wood-grain),linear-gradient(145deg,#4c2e1a,#28170e 50%,#462918);box-shadow:0 0 0 2px #29150b,0 0 0 3px #94623b,0 22px 55px #000b,inset 0 0 0 2px #916039,inset 0 0 48px #08040373;text-align:center}
+.home-card:before,.setup-card:before{content:"";position:absolute;inset:12px;z-index:-1;pointer-events:none;border:1px solid #b9854a45;box-shadow:inset 0 0 0 1px #09050375}
+.home-card:after,.setup-card:after{content:"";pointer-events:none;position:absolute;top:11px;left:11px;right:11px;bottom:11px;border-radius:3px;background:
+ radial-gradient(circle at 0 0,#e3cc9a 0 3px,#5c4630 4px 6px,transparent 7px),
+ radial-gradient(circle at 100% 0,#e3cc9a 0 3px,#5c4630 4px 6px,transparent 7px),
+ radial-gradient(circle at 0 100%,#e3cc9a 0 3px,#5c4630 4px 6px,transparent 7px),
+ radial-gradient(circle at 100% 100%,#e3cc9a 0 3px,#5c4630 4px 6px,transparent 7px)}
+.home-card h2,.setup-card h2{font:clamp(24px,4vw,34px)/1.25 Rye,Georgia,serif;color:#f1dcb0;letter-spacing:.02em;text-shadow:0 2px 0 #281007,0 3px 11px #000b}
+.home-card>p{max-width:440px;margin:13px auto 26px;color:#d9bf95;font-size:13px;line-height:1.85}
+.home-icon{width:108px;height:108px;margin:0 auto 10px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#66723c48 0 45%,transparent 64%);font-size:62px;filter:drop-shadow(0 9px 9px #0008)}
+.home-card>button{width:min(430px,100%);display:block;margin:13px auto;min-height:57px}
+button{position:relative;isolation:isolate;overflow:visible;min-height:43px;border:1px solid #97643e;border-radius:5px;padding:12px 16px;margin:4px;color:var(--paper);font:900 12px/1.35 "Roboto Slab",Georgia,serif;letter-spacing:.035em;text-shadow:0 1px 2px #120803eb;
+ background:var(--wood-surface);box-shadow:inset 0 1px 0 #bc86507a,inset 0 -2px 0 #241007,0 4px 0 #1a0b06,0 7px 13px #0006;transition:filter .16s ease,transform .15s ease,box-shadow .15s ease}
+button:hover{filter:brightness(1.13)}
+button:active{transform:translateY(3px);box-shadow:inset 0 2px 4px #180803,0 1px 0 #1a0b06}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #ffe1a6;outline-offset:3px}
+button:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.5)}
+/* Dois pregos nos extremos, gravados na própria madeira. */
+button:not(.draw-cta):not(.rg-tab):not(.rg-close):not(.modal-x):not(.draw-close):not(.symbol-picker button):not(.player-count button):before,
+button:not(.draw-cta):not(.rg-tab):not(.rg-close):not(.modal-x):not(.draw-close):not(.symbol-picker button):not(.player-count button):after{
+ content:"";position:absolute;z-index:0;pointer-events:none;width:6px;height:6px;top:50%;transform:translateY(-50%);border-radius:50%;background:var(--metal);border:1px solid #2a1c16;box-shadow:0 1px 1px #0009}
+button:not(.draw-cta):not(.rg-tab):not(.rg-close):not(.modal-x):not(.draw-close):not(.symbol-picker button):not(.player-count button):before{left:5px}
+button:not(.draw-cta):not(.rg-tab):not(.rg-close):not(.modal-x):not(.draw-close):not(.symbol-picker button):not(.player-count button):after{right:5px}
+.hero-btn,.plus,#startGame,#newGame,#again,.draw-actions .draw-accept{color:#ffe7b6;background:var(--wood-grain),linear-gradient(145deg,#b9682c,#783415 53%,#a95020);border:2px solid #d79b50;box-shadow:inset 0 2px 0 #f5b86b7a,inset 0 -3px #54200f,0 5px 0 #361608,0 8px 18px #0009;text-shadow:0 2px 1px #4b1906;font-size:clamp(13px,2.8vw,16px)}
+.hero-btn:hover,.plus:hover{filter:brightness(1.18);box-shadow:inset 0 2px 0 #f8c57d,0 5px 0 #361608,0 0 24px #e56d2b60}
+.home-card #homeCards,.home-card #homeRules,#cards,#gameRules{background:var(--wood-grain),linear-gradient(#48552d,#303e25);border-color:#9c965b}
+.home-card #openHistory{background:var(--wood-grain),linear-gradient(#684a30,#3e2919)}
+.back,#homeBtn,.modal-x{background:var(--wood-grain),linear-gradient(#5b3b28,#332016)}
+.player-count{gap:12px;margin:20px auto}
+.player-count button{font:27px Rye;min-height:81px;background:var(--wood-grain),linear-gradient(#5b3822,#2b1a12);border:2px solid #704929}
+.player-count button.selected{border-color:#f0c077;background:var(--wood-grain),linear-gradient(#84603b,#49301c);box-shadow:0 0 0 2px #5b3e25,0 0 22px #ffc27131,inset 0 2px #fff1c440}
+.player-count small{font:10px "Roboto Slab",serif;margin-top:5px;color:#d4ba8d}
+.setup-card>small{color:#dcb478;font-weight:900}
+.teams-setup{gap:18px}
+.setup-team{position:relative;padding:23px 16px;border:3px solid #654325;border-radius:8px;background:var(--wood-grain),linear-gradient(#2a1b12,#1c130e);box-shadow:inset 0 0 0 1px #a16b393f,inset 0 0 22px #0008}
+.setup-team h3{font:20px Rye;color:#e3c48d;margin:0 0 10px}
+.setup-team:nth-child(2){border-color:#58603c}
+.symbol-picker{gap:6px}
+.symbol-picker button{font-size:22px;min-height:46px;min-width:46px;padding:8px;border:1px solid #755337;background:linear-gradient(#50321d,#311d12);border-radius:8px}
+.symbol-picker .selected{outline:2px solid #dcae67;outline-offset:1px;background:linear-gradient(#68783c,#3b482a)}
+.field{color:#d4b181;font-size:10px;letter-spacing:.09em;font-weight:900}
+.field input{min-height:45px;background:linear-gradient(#160f0a,#251911);border:1px solid #9b6b3e;color:#f3debb;padding:10px 13px;border-radius:4px}
+.field input::placeholder{color:#9a826a}
+.draw-panel{margin:27px 0 21px}
+.draw-cta,.draw-actions .draw-accept{box-shadow:0 6px 0 #431608,0 11px 25px #000a,inset 0 3px 0 #fff7c255,0 0 26px #ffb14340}
+.match-top{gap:14px;margin:8px 1px 19px;color:#c4a883;flex-wrap:wrap}
+#matchPlayers{font-size:11px;max-width:78%;text-align:right;line-height:1.6}
+.board{position:relative;gap:12px;padding:22px;background:var(--wood-grain),linear-gradient(135deg,#422615,#24150d);border:8px solid #704323;border-radius:10px;box-shadow:inset 0 0 0 2px #a77543,0 0 0 2px #2f1a0f,0 0 0 3px #8f6439,0 24px 40px #000b}
+.board:before,.board:after{content:"";position:absolute;top:9px;bottom:9px;width:8px;pointer-events:none;background:radial-gradient(circle at 50% 15px,#d3b18b 1px,#594534 4px,transparent 5px) center/8px 82px repeat-y}
+.board:before{left:7px}.board:after{right:7px}
+.team{position:relative;isolation:isolate;padding:25px 15px 22px;border:2px solid #a27849;border-radius:7px;background:var(--wood-grain),linear-gradient(158deg,#3a2317,#1a110d 68%);box-shadow:inset 0 0 0 1px #c0934a40,inset 0 0 35px #0008,0 8px 18px #0006}
+.team:nth-of-type(2){border-color:#6f7a4a;background:var(--wood-grain),linear-gradient(158deg,#30402b,#171e16 68%)}
+.team:before,.team:after{content:"";position:absolute;top:8px;width:7px;height:7px;border-radius:50%;background:var(--metal);border:1px solid #26180e}
+.team:before{left:8px}.team:after{right:8px}
+.team-symbol{font-size:clamp(30px,6vw,46px);filter:drop-shadow(0 4px 5px #0007)}
+.team-name{font:900 clamp(18px,3vw,28px)/1.25 "Roboto Slab",serif;color:#f5ddab;margin-top:4px;text-shadow:0 2px 2px #000}
+.roster{color:#bda280;line-height:1.5;margin-top:6px}
+.phase{margin-top:17px;border:1px solid #8b613d;border-radius:4px;background:#37241a;font-size:10px;letter-spacing:.17em}
+.phase.boas{border-color:#a2b36b;background:linear-gradient(#53653a,#30472a);color:#f6eab3;box-shadow:0 0 20px #89a25445}
+.score{position:relative;display:block;font:clamp(77px,14vw,134px)/1.12 Rye,Georgia,serif;letter-spacing:-.05em;margin:8px 0 12px;color:#f6deb0;text-shadow:0 2px 0 #906b49,0 6px 0 #211108,0 10px 24px #000c}
+.ticks{height:auto;min-height:13px;padding:2px;border:1px solid #65472e;border-radius:2px;gap:2px;background:#1b120b;margin-bottom:21px}
+.tick{height:8px;background:#52351e;border-radius:1px}
+.tick.on{background:linear-gradient(#ffcc73,#cd6e2e);box-shadow:0 0 6px #ff8627}
+.team:nth-of-type(2) .tick.on{background:linear-gradient(#c3cd83,#72894c);box-shadow:0 0 6px #c5ce73}
+.controls{grid-template-columns:minmax(39px,60px) minmax(0,1fr);gap:7px}
+.controls button{min-height:53px;margin:0}
+.plus{font-size:15px}
+.quick{gap:5px;margin-top:8px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.quick button{margin:0;min-width:0;padding:10px 3px}
+.quick small{font-size:8px;color:#d7ba90;letter-spacing:0}
+.versus{font:18px Rye;color:#e8bd75;text-shadow:0 0 14px #d56c23}
+.bar{margin:22px auto 30px;gap:9px}
+.bar button{min-height:46px;margin:0;padding:12px 19px}
+.history{margin:20px auto 0;padding:22px;border:2px solid #765130;border-radius:7px;background:var(--wood-grain),linear-gradient(#261910,#1c130e);box-shadow:inset 0 0 0 1px #aa744533}
+.history h2{font:23px Rye;color:#dfc28d}
+.event{border:1px solid #826040;border-radius:5px;background:#39251a;color:#e4cca8;padding:10px 13px;margin:5px}
+.match-card{position:relative;background:var(--wood-grain),linear-gradient(#332016,#24160f);border:2px solid #795230;border-radius:5px;padding:17px 21px;line-height:1.8}
+.match-card:before{content:"•";position:absolute;top:3px;right:9px;color:#a28a63}
+.match-card b{color:#f0cd83}
+.empty{color:#b39772}
+footer{color:#aa855f}
+dialog:not(.draw-dialog):not(.rules-dialog){border:6px solid #6c4325;border-radius:9px;background:var(--wood-grain),linear-gradient(#3a2416,#21150f);box-shadow:0 0 0 2px #ae7943,0 23px 70px #000d}
+dialog::backdrop{background:rgba(7,4,3,.86);backdrop-filter:blur(3px)}
+.modal h2{color:#f3d9a7}
+.modal>small{color:#d9aa6e;letter-spacing:.15em}
+.modal p{line-height:1.65;color:#d6bb96}
+#points .custom-grid{gap:8px}
+#points .custom-grid button{min-height:50px}
+#pointTeams button{min-height:52px}
+#winner .stars{color:#f7c46c;font-size:25px}
+#winnerName{text-shadow:0 0 15px #e9793c66}
+.cards-modal{background:transparent}
+.rank-row{border-color:#956942;background:var(--wood-grain),linear-gradient(#48301e,#2c1b12)}
+.rank-row-brava{border-color:#c9a265;box-shadow:inset 4px 0 #e2aa5d,0 4px 12px #0005}
+.rank-position{color:#f4d08c}
+.rg-window{background:var(--wood-grain),linear-gradient(#2d1d13,#170e0a)}
+.rules-dialog{border:6px solid #80512b;border-radius:9px;box-shadow:0 0 0 2px #bf9058,0 25px 70px #000d}
+.rg-top,.rg-footer{background:var(--wood-grain),linear-gradient(#5a341d,#302016)}
+.rg-card{background:var(--wood-grain),linear-gradient(#352115,#22160e);border-color:#876039}
+.rg-hero{border-color:#b5864b;background:var(--wood-grain),radial-gradient(ellipse at 50% -10%,#a55d2d66,transparent 75%),linear-gradient(#3e2819,#1f140d)}
+.rg-tab[aria-selected="true"]{background:var(--wood-grain),linear-gradient(#617442,#36482d);border-color:#b5bb7e;color:#fff0c2}
+.rg-nav{background:#23160d}
+.rg-close{background:var(--metal);color:#2d1d13;border-color:#c9aa7a;text-shadow:none}
+.rg-section-intro h3,.rg-top h2{color:#f0d9a8}
+.rg-story{background:#53402555;border-color:#d49c52}
+#cardOrder .modal-x,#closeCardsBottom{background:var(--wood-surface)}
+/* Fire is ambient, behind all interaction; no continuous layout work. */
+.hearth{position:fixed;z-index:-1;bottom:0;left:50%;width:min(700px,100vw);height:265px;transform:translateX(-50%);pointer-events:none;overflow:hidden;opacity:.9}
+.hearth:before{content:"";position:absolute;bottom:-34px;left:8%;width:84%;height:145px;background:radial-gradient(ellipse,#b13d175e 0,#e8651530 30%,transparent 69%);filter:blur(15px);animation:hearthBreathe 4.4s ease-in-out infinite alternate}
+.hearth-glow{position:absolute;bottom:-31px;left:21%;width:58%;height:96px;background:radial-gradient(ellipse,#ffa13c70,#d14a182f 40%,transparent 71%);filter:blur(12px);animation:hearthBreathe 2.9s ease-in-out infinite alternate-reverse}
+.hearth-logs{position:absolute;left:50%;bottom:-11px;width:205px;height:36px;transform:translateX(-50%);background:var(--wood-grain),linear-gradient(#312018,#110b09);border:2px solid #6b3b1b;border-radius:50%;box-shadow:0 0 38px #cf551b63,0 -5px 15px #b83c1244;opacity:.85}
+.hearth-flame{position:absolute;bottom:8px;left:50%;width:68px;height:115px;background:radial-gradient(ellipse at 50% 85%,#ffe0a1 0 14%,#ff9e32 30%,#eb4e17 53%,transparent 73%);filter:blur(8px);border-radius:57% 44% 54% 48%;transform-origin:50% 100%;mix-blend-mode:screen;animation:hearthDance 2.6s ease-in-out infinite alternate}
+.hearth-flame.f1{--shift:-71px;animation-duration:2.2s;animation-delay:-1s;scale:.72}
+.hearth-flame.f2{--shift:-34px;animation-duration:2.9s;animation-delay:-.6s;scale:1}
+.hearth-flame.f3{--shift:0px;animation-duration:2.4s;animation-delay:-1.5s;scale:1.1}
+.hearth-flame.f4{--shift:38px;animation-duration:3.1s;animation-delay:-.4s;scale:.83}
+.hearth-flame.f5{--shift:76px;animation-duration:2.7s;animation-delay:-1.9s;scale:.63}
+.hearth-ember{position:absolute;bottom:24px;left:50%;width:4px;height:4px;border-radius:50%;background:#ffbd6c;box-shadow:0 0 12px 3px #f37020;opacity:0;animation:hearthSpark 5s linear infinite}
+.hearth-ember.e1{--ex:-108px;--drift:-25px;animation-delay:-1s;animation-duration:4.8s}
+.hearth-ember.e2{--ex:65px;--drift:29px;animation-delay:-3.2s;animation-duration:4.1s}
+.hearth-ember.e3{--ex:0px;--drift:-15px;animation-delay:-2.3s;animation-duration:3.9s}
+.hearth-ember.e4{--ex:115px;--drift:34px;animation-delay:-.7s;animation-duration:5.4s}
+.hearth-ember.e5{--ex:-50px;--drift:10px;animation-delay:-4.5s;animation-duration:4.7s}
+@keyframes hearthBreathe{from{opacity:.46;transform:scale(.85)}to{opacity:.96;transform:scale(1.13)}}
+@keyframes hearthDance{from{transform:translateX(var(--shift,0px)) rotate(-10deg) scaleY(.78) scaleX(.87);opacity:.48}to{transform:translateX(calc(var(--shift,0px) + 11px)) rotate(11deg) scaleY(1.18) scaleX(1.1);opacity:.86}}
+@keyframes hearthSpark{0%{opacity:0;transform:translate(var(--ex),5px) scale(.5)}16%{opacity:.9}82%{opacity:.3}100%{opacity:0;transform:translate(calc(var(--ex) + var(--drift)), -225px) scale(.15)}}
+@keyframes galpaoEnter{from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:800px){.wrap{padding-bottom:80px}.hearth{opacity:.78}}
+@media(max-width:720px){
+ .wrap{width:calc(100% - 16px);padding:12px 0 88px}
+ .home-card,.setup-card{margin:20px auto;border-width:5px;padding:28px 15px}
+ .home-card h2,.setup-card h2{font-size:26px}
+ .brand h1{font-size:30px}
+ .board{gap:6px;padding:14px 10px;border-width:5px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .board:before,.board:after{display:none}
+ .team{padding:17px 7px 14px}
+ .score{font-size:clamp(57px,17vw,92px)}
+ .team-name{font-size:clamp(15px,3.3vw,21px)}
+ .controls{grid-template-columns:35px minmax(0,1fr)}
+ .controls button{min-height:46px;padding:8px 4px}
+ .quick button{font-size:10px;min-height:42px;padding:7px 2px}
+ .quick small{font-size:7px}
+ .bar{gap:6px}
+ .bar button{flex:1 1 145px}
+ .history{padding:14px}
+ .hearth{height:170px;opacity:.5}
+ .hearth-flame{bottom:-15px}
+}
+@media(max-width:370px){
+ .team{padding:12px 4px}
+ .team-name{font-size:14px}
+ .score{font-size:15.5vw}
+ .quick{grid-template-columns:1fr}
+ .quick button{min-height:36px}
+ .brand h1{font-size:24px}
+ .brand small{letter-spacing:.18em}
+}
+@media(prefers-reduced-motion:reduce){
+ .hearth-flame,.hearth-glow,.hearth:before,.hearth-ember{animation:none!important}
+ .hearth-flame{opacity:.4}
+ .hearth-ember{display:none}
+ .screen{animation:none}
+ button{transition:none}
+}
