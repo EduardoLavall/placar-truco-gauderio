@@ -57,6 +57,7 @@
     if (names.length !== 4 && names.length !== 6) {
       throw new Error("É preciso ter quatro ou seis jogadores.");
     }
+    const targetKings = names.length / 2;
     const deck = shuffle(suits.flatMap((suit) =>
       ranks.map((rank) => ({rank, suit}))
     ));
@@ -67,7 +68,7 @@
     const kings = [];
     let turn = 0;
     for (const card of deck) {
-      if (kings.length === 4) break;
+      if (kings.length === targetKings) break;
       while (!remaining.has(seatOrder[turn % names.length])) turn++;
       const player = seatOrder[turn % names.length];
       const isKing = card.rank === 12;
@@ -79,19 +80,15 @@
       }
       turn++;
     }
-    if (kings.length !== 4) throw new Error("Não foi possível encontrar os quatro reis.");
-    const teams = [kings.slice(0, 2), kings.slice(2, 4)];
-    if (names.length === 6) {
-      const extras = shuffle(names.map((_, index) => index).filter((index) => !kings.includes(index)));
-      teams[0].push(extras[0]);
-      teams[1].push(extras[1]);
-    }
+    if (kings.length !== targetKings) throw new Error("Não foi possível completar o sorteio dos reis.");
+    // Os primeiros 2 (ou 3) que tiram rei jogam contra todos os demais.
+    const teams = [kings.slice(), names.map((_, index) => index).filter((index) => !kings.includes(index))];
     teams.forEach((members) => members.sort((a, b) => a - b));
     if (new Set(teams.flat()).size !== names.length ||
         teams.some((members) => members.length !== names.length / 2)) {
       throw new Error("Formação de equipes inválida.");
     }
-    return {steps, teams, kings, cardsDealt: steps.length};
+    return {steps, teams, kings, targetKings, cardsDealt: steps.length};
   }
 
   function readNames() {
@@ -137,7 +134,7 @@
     seats.classList.remove("hidden");
     table.classList.remove("hidden");
     total.textContent = "0 / 40 CARTAS";
-    kingCount.textContent = "0 / 4 REIS";
+    kingCount.textContent = "0 / " + outcome.targetKings + " REIS";
     progress.style.width = "0%";
     announcer.textContent = "Baralho embaralhado. Distribuindo as cartas...";
     accept.classList.add("hidden");
@@ -160,10 +157,9 @@
     if (step.isKing) {
       seat.classList.add("draw-king-seat");
       const badge = seat.querySelector(".draw-person-badge");
-      const team = step.kingNumber <= 2 ? 1 : 2;
-      badge.textContent = "♛ REI DE " + step.card.suit.name + " · TIME " + team;
+      badge.textContent = "♛ REI DE " + step.card.suit.name + " · TIME 1";
       badge.classList.add("draw-found-king");
-      kingCount.textContent = step.kingNumber + " / 4 REIS";
+      kingCount.textContent = step.kingNumber + " / " + outcome.targetKings + " REIS";
       announcer.textContent = "♛ " + currentNames[step.player] + " tirou REI DE " + step.card.suit.name + "!";
       const face = document.createElement("div");
       face.className = "draw-king-face" + (step.card.suit.red ? " draw-red" : "");
@@ -231,17 +227,15 @@
       columns.append(section);
     });
     resultArea.append(columns);
-    if (currentNames.length === 6) {
-      const note = document.createElement("p");
-      note.className = "draw-result-note";
-      note.textContent = "Os dois jogadores sem rei foram distribuídos, um por time.";
-      resultArea.append(note);
-    }
+    const note = document.createElement("p");
+    note.className = "draw-result-note";
+    note.textContent = "Quem tirou rei joga no Time 1. Quem não tirou fica no Time 2.";
+    resultArea.append(note);
     resultArea.classList.remove("hidden");
-    announcer.textContent = "Quatro reis encontrados em " + outcome.cardsDealt + " cartas. Equipes formadas!";
+    announcer.textContent = outcome.targetKings + " reis encontrados em " + outcome.cardsDealt + " cartas. Sorteio encerrado!";
     progress.style.width = "100%";
     total.textContent = outcome.cardsDealt + " / 40 CARTAS";
-    kingCount.textContent = "4 / 4 REIS";
+    kingCount.textContent = outcome.targetKings + " / " + outcome.targetKings + " REIS";
     cardSpot.classList.add("draw-deck-finished");
     skip.classList.add("hidden");
     retry.classList.remove("hidden");
