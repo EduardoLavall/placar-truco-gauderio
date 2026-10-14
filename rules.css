@@ -157,3 +157,7 @@
   .rg-score-inputs input{width:85px}
 }
 @media(prefers-reduced-motion:reduce){.rg-page{animation:none}.rg-tabs{scroll-behavior:auto}}
+
+/* v2.3.1 · alinhamento com estilo global da página */
+.rg-top{text-align:left}
+.rg-footer{margin:0;text-align:left;letter-spacing:normal}

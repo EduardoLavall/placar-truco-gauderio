@@ -19,8 +19,8 @@
         </div>
         <section class="rg-card">
           <div class="rg-heading"><span class="rg-icon">🎯</span><div><small>OBJETIVO</small><h3>Primeiro a 30 ganha a peleia</h3></div></div>
-          <div class="rg-halves"><div class="rg-half rg-half-ruins"><span>01 — 15</span><b>RUINS</b><small>Primeira metade</small></div><div class="rg-halves-divider">➜</div><div class="rg-half rg-half-boas"><span>16 — 30</span><b>BOAS</b><small>Reta final</small></div></div>
-          <p>No nosso placar a partida vai até 30 tentos. Há mesas que jogam a 24 (12 ruins + 12 boas), inclusive torneios do MTG; aqui adotamos <strong>30 como regra da casa</strong>.</p>
+          <div class="rg-halves"><div class="rg-half rg-half-ruins"><span>0 — 14 TENTOS</span><b>RUINS</b><small>Primeira metade</small></div><div class="rg-halves-divider">➜</div><div class="rg-half rg-half-boas"><span>15 — 29 TENTOS</span><b>BOAS</b><small>Reta final</small></div></div>
+          <p>No nosso placar a partida termina ao chegar a 30 tentos: ao completar 15 a equipe entra nas boas. Há mesas que jogam a 24 (12 ruins + 12 boas), inclusive torneios do MTG; aqui adotamos <strong>30 como regra da casa</strong>.</p>
         </section>
         <section class="rg-card">
           <div class="rg-heading"><span class="rg-icon">🃏</span><div><small>PASSO A PASSO</small><h3>Como acontece uma mão</h3></div></div>
@@ -183,7 +183,7 @@
         </section>
         <section class="rg-card rg-disclaimer">
           <div class="rg-heading"><span class="rg-icon">📚</span><div><small>FONTES E COMBINADOS</small><h3>Qual regra estamos usando?</h3></div></div>
-          <p>O aplicativo é um <strong>placar manual de Truco Cego a 30 tentos</strong>, com ordem fixa de cartas. O regulamento esportivo do MTG/RS usa tradicionalmente <strong>24 tentos</strong> (12 malos e 12 buenos), e o Truco de Amostra é outra modalidade.</p>
+          <p>O aplicativo é um <strong>placar manual de Truco Cego a 30 tentos</strong>, com ordem fixa de cartas. O regulamento esportivo de Truco Cego do MTG/RS consultado (edição 2025) usa <strong>24 tentos</strong> (12 malos e 12 buenos), e o Truco de Amostra é outra modalidade.</p>
           <p>A <strong>Falta</strong> aqui corresponde aos tentos que faltam ao <strong>ponteiro</strong> até 30. Combinações de várias Flores, regras de torneio e diferenças regionais devem ser combinadas pelos jogadores antes da partida.</p>
           <div class="rg-sources">
             <a href="https://www.mtg.org.br/regulamentos-do-mtg/" target="_blank" rel="noopener noreferrer">↗ MTG/RS · Regulamentos (Truco Cego)</a>
