@@ -101,3 +101,21 @@
   .draw-panel.draw-applied,.draw-person.draw-receiving,.draw-person.draw-king-burst,.draw-king-face,.draw-results{animation:none}
   .draw-cta,.draw-person,.draw-meter-fill{transition:none}
 }
+
+/* v2.2.0 — ranking vertical com naipes ilustrados no estilo espanhol */
+.cards-modal{width:min(560px,94vw);max-height:min(88vh,850px);overflow-y:auto}
+.card-rank{display:flex;flex-direction:column;gap:9px;overflow:visible;padding:12px 3px}
+.rank-row{display:grid;grid-template-columns:42px 77px minmax(0,1fr);align-items:center;gap:13px;padding:8px 13px;border:1px solid #79502a;border-radius:12px;background:linear-gradient(115deg,#392317,#24140e)}
+.rank-position{font:20px Rye;color:#e5bd76;text-align:center}
+.rank-description{text-align:left;display:flex;flex-direction:column;gap:6px;min-width:0}
+.rank-description strong{font:clamp(13px,3vw,18px) "Roboto Slab",serif;color:#f4e0b7}
+.rank-description span{font-size:10px;letter-spacing:.11em;color:#d8a963}
+.playing-card{position:relative;flex:0 0 auto;width:73px;height:103px;display:flex;align-items:center;justify-content:center;background:#f7edce;color:#402818;border:3px solid #c9a66c;border-radius:7px;box-shadow:inset 0 0 0 3px #f7edce,inset 0 0 0 5px #c3a06a,0 4px 9px #0008}
+.playing-card.manilha{box-shadow:inset 0 0 0 3px #f7edce,inset 0 0 0 5px #c3a06a,0 0 14px #e6a74a88}
+.spanish-corner{position:absolute;top:7px;left:8px;font:bold 16px Georgia,serif;color:#7d3023}
+.spanish-corner-bottom{top:auto;left:auto;bottom:7px;right:8px;transform:rotate(180deg)}
+.spanish-art{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0;max-width:60px}
+.spanish-suit{width:43px;height:43px}
+.spanish-art:has(.spanish-suit:nth-child(2)) .spanish-suit{width:28px;height:28px}
+.spanish-figure{font:50px Georgia,serif;color:#9b4b2c;line-height:1}
+@media(max-width:400px){.rank-row{grid-template-columns:30px 66px minmax(0,1fr);gap:8px;padding:7px}.playing-card{width:64px;height:90px}.rank-position{font-size:16px}}
