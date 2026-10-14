@@ -3,7 +3,7 @@
 Placar mobile-first para partidas de **Truco Gaudério até 30 tentos**.
 
 ## Recursos
-- **Identidade Galpão v2.4.0:** paleta fechada carvão, madeira tostada, couro, cobre, brasa, erva-mate e papel envelhecido; painéis com textura artesanal, botões de tábua e pregos, foco visível, fogo de chão animado e opção de movimento reduzido no sistema. O modal de Tirar no Rei preserva o visual original.
+- **Identidade Galpão v2.4.1:** paleta fechada carvão, madeira tostada, couro, cobre, brasa, erva-mate e papel envelhecido; painéis com textura artesanal, botões de tábua e pregos, foco visível, fogo de chão animado e opção de movimento reduzido no sistema. O modal de Tirar no Rei preserva o visual original. A tela inicial ganhou brasão de cuia, cena SVG autoral animada de fogo de chão e composição editorial própria; os efeitos podem ser ligados/desligados pelo rodapé e a preferência fica salva.
 - **Como jogar (v2.3.0):** manual ilustrado responsivo no menu inicial e no placar, com regras de Truco, Envido, Real Envido, Falta Envido, Flor, Contra-Flor, Contra-Flor e o Resto, desempates, recusas, exemplos com cartas espanholas, consulta rápida e calculadora da Falta Envido com o placar atual.
 - Partidas de 2, 4 ou 6 jogadores (1×1, 2×2 ou 3×3), com nomes e símbolos dos times editáveis
 - Placar de 0 a 30
