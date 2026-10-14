@@ -3,6 +3,7 @@
 Placar mobile-first para partidas de **Truco Gaudério até 30 tentos**.
 
 ## Recursos
+- **Como jogar (v2.3.0):** manual ilustrado responsivo no menu inicial e no placar, com regras de Truco, Envido, Real Envido, Falta Envido, Flor, Contra-Flor, Contra-Flor e o Resto, desempates, recusas, exemplos com cartas espanholas, consulta rápida e calculadora da Falta Envido com o placar atual.
 - Partidas de 2, 4 ou 6 jogadores (1×1, 2×2 ou 3×3), com nomes e símbolos dos times editáveis
 - Placar de 0 a 30
 - Indicador **Ruins / Boas** na metade da partida
@@ -18,6 +19,8 @@ Placar mobile-first para partidas de **Truco Gaudério até 30 tentos**.
 App estático: HTML + CSS + JavaScript, sem backend.
 
 ## Regras consideradas
+O guia documenta a variante **Truco Cego com ordem fixa das cartas**. O regulamento competitivo do MTG/RS (2025/2026) prevê partidas de **24 tentos** (12 ruins e 12 boas); este app é uma adaptação de **30 tentos (15+15)**, com placar manual. Na adaptação, Falta Envido = `30 − maior placar dos times`, e Contra-Flor e o Resto (duas Flores em disputa) = `6 + Falta`. Mesas e aplicativos podem divergir em múltiplas Flores ou critério de Falta: combinar antes de jogar. Fontes: [Regulamentos MTG/RS](https://www.mtg.org.br/regulamentos-do-mtg/), [Jogatina](https://www.jogatina.com/regras-como-jogar-truco-gauderio.html), [Truco Gaudério](https://trucogauderio.com.br/).
+
 O placar usa a modalidade de 30 tentos e os valores de mão do Truco Gaudério/Argentino: Truco vale 2, Retruco 3 e Vale 4 vale 4. Envido/Flor podem variar conforme canto e situação, então há marcação manual de tentos.
 
 ## Sorteio de equipes — Tirar no Rei (v2.1.1)
