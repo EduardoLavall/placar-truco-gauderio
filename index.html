@@ -8,19 +8,19 @@
 <h3>Quem vai cair no mesmo time?</h3>
 <p>Chega de escolher parceiro no grito. Vamos <strong>tirar no rei!</strong></p>
 <button id="drawStart" type="button" class="draw-cta"><span class="draw-cta-icon">♛</span><span>TIRAR NO REI<small>EMBARALHAR E SORTEAR OS TIMES</small></span><span class="draw-cta-arrow">➜</span></button>
-<p class="draw-caption">Dois primeiros reis juntos, dois últimos juntos. Com 6 jogadores, os dois sem rei são sorteados um para cada time.</p>
+<p class="draw-caption">Com 4 jogadores, os 2 primeiros reis formam um time contra os outros 2. Com 6, os 3 primeiros reis enfrentam os outros 3. O sorteio para assim que o último rei necessário aparece.</p>
 <p id="drawStatus" class="draw-status" aria-live="polite"></p>
 </div><button id="startGame" class="hero-btn">🃏 COMEÇAR A PELEIA</button></div></section>
 <section id="game" class="screen hidden"><div class="match-top"><button id="homeBtn">⌂ MENU</button><span id="matchPlayers"></span></div><section class="board" id="board"></section><section class="bar"><button id="soundToggle">🔇 MUDO</button><button id="undo">↶ DESFAZER</button><button id="cards">🂡 ORDEM DAS CARTAS</button><button id="custom">✦ MARCAR PONTOS</button><button id="reset">NOVA PELEIA ↻</button></section><section class="history"><h2>ÚLTIMOS TENTOS</h2><div id="history"></div></section></section>
 <section id="historyScreen" class="screen hidden"><div class="setup-card"><button class="back" id="historyBack">← VOLTAR</button><small>MEMÓRIA DO GALPÃO</small><h2>Histórico de Partidas</h2><div id="matchHistory"></div></div></section>
-<footer>FEITO NO SUL • ATÉ 30 TENTOS • v2.1.0</footer></main>
+<footer>FEITO NO SUL • ATÉ 30 TENTOS • v2.1.1</footer></main>
 <dialog id="winner"><div class="modal winner-modal"><div class="stars">✦ ✦ ✦</div><small>PELEIA ENCERRADA</small><h2 id="winnerName"></h2><p>chegou aos 30 e levou a peleia!</p><button id="again">REVANCHE</button><button id="winnerMenu">VOLTAR PRO GALPÃO</button></div></dialog>
 <dialog id="points"><form method="dialog" class="modal"><small>MARCAR TENTOS</small><h2>Quantos pontos?</h2><div class="custom-grid" id="customGrid"></div><div id="pointTeams" class="point-teams"></div><button value="cancel">CANCELAR</button></form></dialog>
 <dialog id="cardOrder"><div class="modal cards-modal"><button class="modal-x" id="closeCards">×</button><small>TRUCO GAUDÉRIO</small><h2>Ordem das Cartas</h2><p>Da mais forte pra mais fraca</p><div class="card-rank" id="cardRank"></div><button id="closeCardsBottom">FECHAR</button></div></dialog><dialog id="drawDialog" class="draw-dialog" aria-labelledby="drawTitle">
 <div class="draw-stage">
 <button id="drawClose" type="button" class="draw-close" aria-label="Fechar sorteio">×</button>
 <div class="draw-stage-header"><p class="draw-stage-eyebrow">♠ BARALHO ESPANHOL · SORTEIO DE EQUIPES ♠</p><h2 id="drawTitle">TIRANDO NO REI</h2><p id="drawNarration" aria-live="polite">Preparando o baralho...</p></div>
-<div class="draw-counter"><span id="drawCount">0 / 40 CARTAS</span><span id="drawKingCount">0 / 4 REIS</span></div>
+<div class="draw-counter"><span id="drawCount">0 / 40 CARTAS</span><span id="drawKingCount">0 / 2 REIS</span></div>
 <div class="draw-meter-track"><div id="drawMeter" class="draw-meter-fill"></div></div>
 <div id="drawTable" class="draw-table"><div id="drawPlayers" class="draw-players"></div><div class="draw-center"><div id="drawDeck" class="draw-deck"><span>♠</span><small>40 CARTAS</small></div></div></div>
 <div id="drawResults" class="draw-results hidden"></div>
