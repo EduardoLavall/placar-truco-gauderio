@@ -372,3 +372,13 @@ dialog::backdrop{background:rgba(7,4,3,.86);backdrop-filter:blur(3px)}
  .screen{animation:none}
  #home button,#game button{transition:none}
 }
+/* v2.4.2: o interruptor das brasas pausa realmente todos os loops de ambiente. */
+.galpao-fx-off .hearth:before,
+.galpao-fx-off .hearth-glow,
+.galpao-fx-off .hearth-flame,
+.galpao-fx-off .hearth-ember,
+.galpao-fx-off .gf-glow,
+.galpao-fx-off .gf-flame,
+.galpao-fx-off .gf-spark{animation-play-state:paused!important}
+.galpao-fx-off .hearth-ember{opacity:0!important}
+.galpao-fx-off .gf-spark{display:none!important}

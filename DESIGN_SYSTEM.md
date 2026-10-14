@@ -1,4 +1,4 @@
-# Identidade visual — Fogo de Chão (v2.4.1)
+# Identidade visual — Fogo de Chão (v2.4.2)
 
 ## Conceito
 O app é um objeto de galpão, não um painel de administração. Tábua queimada, couro curtido, pátina de ferro, papel envelhecido, erva-mate e fogo de chão. O visual deve ter textura e peso, mas os dados do jogo permanecem os mais fáceis de ler.
