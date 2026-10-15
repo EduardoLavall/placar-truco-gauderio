@@ -20,7 +20,7 @@ O app é um objeto de galpão, não um painel de administração. Tábua queimad
 
 ## Componentes
 - **Letreiro do galpão:** madeira e selo original em SVG de cuia e bomba, gravado na placa.
-- **Botões:** madeira entalhada, pregos de latão, resposta ao toque por depressão e realce de borda.
+- **Botões:** madeira entalhada sem pregos decorativos, resposta ao toque por depressão e realce de borda. Pregos podem existir somente em molduras estruturais, não nos controles.
 - **Cena de fogo de chão:** SVG vetorial autoral, fogueira, toras, halo e cinco brasas animadas com transform/opacity; sem vídeo ou imagem remota.
 - **Placar:** painel como mesa de madeira, time 1 em brasa, time 2 em erva-mate, tentos talhados e feedback já existente.
 - **Configuração:** placas individuais e controles de escolha evidentes.
@@ -42,3 +42,8 @@ O app é um objeto de galpão, não um painel de administração. Tábua queimad
 
 ## QA
 Checar desktop, 390px, 360px e 320px; validar botões, modais, som opt-in, histórico/localStorage, efeitos e layout do Sorteio no Rei.
+
+## Simplificação v2.4.3
+- Menu de entrada direto: título “Abre a Cancha”, subtítulo de cinco palavras e quatro botões.
+- Retiradas as chamadas redundantes no cabeçalho, as legendas do fogo e o texto decorativo final.
+- Botões permanecem de madeira com profundidade e contraste, mas **não usam pregos**. A fogueira continua sendo a peça visual principal.

@@ -6,9 +6,9 @@
   <path d="M41 29L44 14 55 11" stroke="#dfcda8" stroke-width="4" stroke-linecap="round"/>
   <path d="M31 36q6 4 2 10m8-11q6 6 1 11" stroke="#b5c389" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   <path d="M27 52Q38 60 48 52" stroke="#dc9851" stroke-width="2" fill="none"/>
-</svg><div><small>TRUCO GAUDÉRIO · RIO GRANDE DO SUL</small><h1>PLACAR DO GALPÃO</h1></div></div><p class="tag">No grito, na carta e sem choro.</p><div class="galpao-headline-rule" aria-hidden="true">FOGO DE CHÃO · TENTO MARCADO</div></header>
-<section id="home" class="screen"><div class="home-card"><div class="home-content"><div class="home-wood-kicker">A CASA DO TRUCO GAUDÉRIO</div><div class="home-icon" aria-hidden="true">🧉</div><h2>ABRE A CANCHA</h2><p>Madeira na mesa, mate passando de mão em mão e peleia até os 30 tentos. Escolhe por onde vamos começar.</p><button id="newGame" class="hero-btn">🔥 NOVA PELEIA</button><button id="openHistory">📜 HISTÓRICO DE PARTIDAS</button><button id="homeCards">🃏 ORDEM DAS CARTAS</button><button id="homeRules">📖 COMO JOGAR · REGRAS</button><div class="home-dedication">Se perder, aguenta a gozação. E passa a cuia.</div></div><div class="home-fire-art" aria-hidden="true">
-  <div class="fire-art-kicker">✦ BRASA VIVA · GALPÃO ACESO ✦</div>
+</svg><div><small>TRUCO GAUDÉRIO</small><h1>PLACAR DO GALPÃO</h1></div></div></header>
+<section id="home" class="screen"><div class="home-card"><div class="home-content"><div class="home-icon" aria-hidden="true">🧉</div><h2>ABRE A CANCHA</h2><p>Até 30 tentos. Sem choro.</p><button id="newGame" class="hero-btn">🔥 NOVA PELEIA</button><button id="openHistory">📜 HISTÓRICO</button><button id="homeCards">🃏 ORDEM DAS CARTAS</button><button id="homeRules">📖 COMO JOGAR</button></div><div class="home-fire-art" aria-hidden="true">
+  
   <svg class="fogo-ilustracao" viewBox="0 0 420 370" xmlns="http://www.w3.org/2000/svg" fill="none">
     <defs>
       <radialGradient id="gf-aura"><stop stop-color="#efae56" stop-opacity=".68"/><stop offset=".45" stop-color="#ce5a23" stop-opacity=".26"/><stop offset="1" stop-color="#bd4221" stop-opacity="0"/></radialGradient>
@@ -37,7 +37,7 @@
   <span class="gf-spark" style="--sx:57%;--sd:4.4s;--delay:-1.8s;--dx:-14px"></span>
   <span class="gf-spark" style="--sx:63%;--sd:3.5s;--delay:-.2s;--dx:24px"></span>
   <span class="gf-spark" style="--sx:52%;--sd:4.9s;--delay:-3.5s;--dx:11px"></span>
-  <div class="fire-art-legend">Aqui o tento é na raça.</div>
+  
 </div></div></section>
 <section id="setup" class="screen hidden"><div class="setup-card"><button class="back" id="setupBack">← VOLTAR</button><small>PREPARAR A PELEIA</small><h2>Quantos jogadores?</h2><div class="player-count"><button data-count="2">2<small>1 × 1</small></button><button data-count="4" class="selected">4<small>2 × 2</small></button><button data-count="6">6<small>3 × 3</small></button></div><div id="teamSetup"></div>
 <div id="drawPanel" class="draw-panel" hidden>
@@ -51,7 +51,7 @@
 </div><button id="startGame" class="hero-btn">🃏 COMEÇAR A PELEIA</button></div></section>
 <section id="game" class="screen hidden"><div class="match-top"><button id="homeBtn">⌂ MENU</button><span id="matchPlayers"></span></div><section class="board" id="board"></section><section class="bar"><button id="soundToggle">🔇 MUDO</button><button id="undo">↶ DESFAZER</button><button id="cards">🂡 ORDEM DAS CARTAS</button><button id="gameRules">📖 COMO JOGAR</button><button id="custom">✦ MARCAR PONTOS</button><button id="reset">NOVA PELEIA ↻</button></section><section class="history"><h2>ÚLTIMOS TENTOS</h2><div id="history"></div></section></section>
 <section id="historyScreen" class="screen hidden"><div class="setup-card"><button class="back" id="historyBack">← VOLTAR</button><small>MEMÓRIA DO GALPÃO</small><h2>Histórico de Partidas</h2><div id="matchHistory"></div></div></section>
-<footer class="galpao-footer"><span>✦ FEITO NO SUL · ATÉ 30 TENTOS · v2.4.2</span><button id="galpaoFxToggle" type="button" aria-pressed="true">🔥 BRASAS ACESAS</button><span>DE GALPÃO EM GALPÃO ✦</span></footer></main>
+<footer class="galpao-footer"><span>PLACAR DO GALPÃO · v2.4.3</span><button id="galpaoFxToggle" type="button" aria-pressed="true">🔥 BRASAS ACESAS</button></footer></main>
 <dialog id="winner"><div class="modal winner-modal"><div class="stars">✦ ✦ ✦</div><small>PELEIA ENCERRADA</small><h2 id="winnerName"></h2><p>chegou aos 30 e levou a peleia!</p><button id="again">REVANCHE</button><button id="winnerMenu">VOLTAR PRO GALPÃO</button></div></dialog>
 <dialog id="points"><form method="dialog" class="modal"><small>MARCAR TENTOS</small><h2>Quantos pontos?</h2><div class="custom-grid" id="customGrid"></div><div id="pointTeams" class="point-teams"></div><button value="cancel">CANCELAR</button></form></dialog>
 <dialog id="cardOrder" aria-labelledby="cardOrderTitle"><div class="modal cards-modal"><button class="modal-x" id="closeCards" aria-label="Fechar ordem das cartas">×</button><small>TRUCO GAUDÉRIO</small><h2 id="cardOrderTitle">Ordem das Cartas</h2><p>Da mais forte para a mais fraca, de cima para baixo. As cartas na mesma posição empatam em força.</p><div class="card-rank" id="cardRank"></div><button id="closeCardsBottom">FECHAR</button></div></dialog><dialog id="rulesDialog" class="rules-dialog" aria-labelledby="rulesTitle"><div class="rg-window"><header class="rg-top"><div><small>🧉 O MANUAL DOS BAGUAIS</small><h2 id="rulesTitle">COMO JOGAR</h2></div><button type="button" id="rulesClose" class="rg-close" aria-label="Fechar regras">×</button></header><nav id="rulesTabs" class="rg-nav" role="tablist" aria-label="Assuntos das regras"></nav><div id="rulesPages" class="rg-pages"></div><footer class="rg-footer"><small>⚜ TRUCO GAUDÉRIO · GUIA DE CONSULTA<br>30 TENTOS · REGRAS DA CASA</small><button type="button" id="rulesCloseBottom">✕ FECHAR REGRAS</button></footer></div></dialog><dialog id="drawDialog" class="draw-dialog" aria-labelledby="drawTitle">
