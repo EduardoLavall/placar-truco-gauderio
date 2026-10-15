@@ -43,7 +43,11 @@ O app é um objeto de galpão, não um painel de administração. Tábua queimad
 ## QA
 Checar desktop, 390px, 360px e 320px; validar botões, modais, som opt-in, histórico/localStorage, efeitos e layout do Sorteio no Rei.
 
-## Simplificação v2.4.3
+## Simplificação v2.4.4
 - Menu de entrada direto: título “Abre a Cancha”, subtítulo de cinco palavras e quatro botões.
 - Retiradas as chamadas redundantes no cabeçalho, as legendas do fogo e o texto decorativo final.
 - Botões permanecem de madeira com profundidade e contraste, mas **não usam pregos**. A fogueira continua sendo a peça visual principal.
+
+## Menu v2.4.4
+- Retirados o brasão e o ícone de cuia, o título “Abre a Cancha” e o subtítulo “Até 30 tentos. Sem choro.”
+- Entrada composta somente pelo nome do app no cabeçalho, quatro ações e fogo de chão. O favicon agora representa uma chama, sem cuia.
